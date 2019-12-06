@@ -4,6 +4,10 @@ var mysql = require("mysql");
 
 var app = express();
 
+
+// var routes = require("./controllers/burgers_controller.js");
+// app.use(routes);
+
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
 var PORT = process.env.PORT || 8080;
@@ -23,7 +27,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "root",
-  database: "quotes_db"
+  database: "burgers_db"
 });
 
 connection.connect(function(err) {
