@@ -12,6 +12,7 @@ $(function(){
             data: newBurger
         }).then(function(){
             console.log("New Burger Added....")
+            //Reload the page to get the updated list
             location.reload();
         });
     });
@@ -42,6 +43,13 @@ $(function(){
         $.ajax({
             type: "DELETE",
             url: "/api/burgers/" + id
-        }).then(location.reload());
-   });
+        }).then(
+            function(){
+                console.log("discarded burger", id);
+                // Reload the page to get the updated list
+            
+            location.reload();
+        }
+   );
+    });
 });
