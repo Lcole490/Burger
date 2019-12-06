@@ -1,4 +1,4 @@
-var connection = require("./connection.js");
+var connection = require("../config/connection.js");
 
 
 function createQmarks(num) {
@@ -9,11 +9,11 @@ function createQmarks(num) {
     return arr.toString();
 }
 
-function translateSql(obj) {
+function translateSql(ob) {
     var arr = [];
-    for (var key in obj) {
-        var value = obj[key];
-        if (Object.hasOwnProperty.call(obj, key)) {
+    for (var key in ob) {
+        var value = ob[key];
+        if (Object.hasOwnProperty.call(ob, key)) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
@@ -70,7 +70,7 @@ var orm = {
 
         console.log(dbQuery);
 
-        connection.query(dbQuery, vals, function (err, res) {
+        connection.query(dbQuery, function (err, res) {
             if (err) {
                 throw err;
             }
@@ -92,4 +92,10 @@ var orm = {
             cb(res);
         });
     }
-}   
+};
+
+// Export the ORM object for the model (burger.js)
+module.exports= orm;
+
+
+
